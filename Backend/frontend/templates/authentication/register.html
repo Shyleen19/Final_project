@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<body>
+    <form>
+        {% csrf_token %}
+        <input type="text" name="first_name" id="first_name" placeholder="Enter your first name." required> <br><br>
+        <input type="text" name="last_name" id="last_name" placeholder="Enter your last name" required><br><br>
+        <input type="text" name="username" id="username" placeholder="Enter your Username" required><br><br>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required><br><br>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required><br><br>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm your password"><br><br>
+        Please select your role: 
+        <select name="role" id="role">
+            <option selected value="">-- Please select a role --</option>
+            <option value="1">Doctor</option>
+            <option value="2">Patient</option>
+            <option value="3">Caregiver</option>
+        </select>
+        <input type="text" name="specialty" id="specialty" placeholder="Enter your specialty"><br><br>
+        <input type="text" id="license_number" name="license_number" placeholder="Enter your license number."><br><br>
+
+        <input type="submit" value="Register" id="submit">
+    </form>
+
+    <script type="module" src="{% static 'js/register.js' %}"></script>
+</body>
+</html>
+{% endblock %}
