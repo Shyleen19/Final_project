@@ -6,6 +6,7 @@ import Dashboard from './Patients_Dashboard/Dashboard.jsx';
 import Caregiver from './Patients_Caregivers/Caregiver.jsx';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import Login from './Authentication/login.jsx';
+import CareDashboard from './Caregivers_Dashboard/careDashboard.jsx';
 import LoginPage from './Authentication/login2.jsx';
 import { useEffect } from 'react';
 import Register from './Authentication/register.jsx';
@@ -35,7 +36,7 @@ function App() {
       <Route path='/patient-dashboard' element={<Dashboard />} />
 
       {/* Caregiver Dashboard*/}
-      <Route path='/caregivers' element={<Caregiver />} />
+      <Route path='/caregiver-dashboard' element={<CareDashboard />} />
 
       {/* Logout */}
       <Route path='/logout' element={<Logout />} />
