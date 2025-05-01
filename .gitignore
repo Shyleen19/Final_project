@@ -52,5 +52,7 @@
 # Package manager specific
 **/.yarn/
 **/.pnp.*
+*.pyc
+__pycache__/
 
 VirtualEnv/
