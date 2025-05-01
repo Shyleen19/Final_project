@@ -6,6 +6,7 @@ import Dashboard from './Patients_Dashboard/Dashboard.jsx';
 import Caregiver from './Patients_Caregivers/Caregiver.jsx';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import Login from './Authentication/login.jsx';
+import VitalsGraph from './Reports/patReport.jsx'
 import CareDashboard from './Caregivers_Dashboard/careDashboard.jsx';
 import LoginPage from './Authentication/login2.jsx';
 import { useEffect } from 'react';
@@ -26,7 +27,7 @@ function App() {
   return (
     <Routes>
       {/* Login and Signup */}
-      <Route path='/login' element={<LoginPage />} />
+      <Route path='/login' element={<VitalsGraph />} />
       <Route path='/register' element={<Register />} />
       <Route path='/activate-account' element= {<ActivateAccount/>} />
 
