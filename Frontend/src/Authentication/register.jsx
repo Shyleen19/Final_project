@@ -3,7 +3,7 @@ import backendConnection from '../services/backendConnection';
 import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import Footer from '../Components/footer';
-import ActivateAccount from './activateAccount';
+
 
 const Register = () => {
   const navigate = useNavigate();
