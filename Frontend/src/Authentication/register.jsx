@@ -3,6 +3,7 @@ import backendConnection from '../services/backendConnection';
 import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import Footer from '../Components/footer';
+import ActivateAccount from './activateAccount';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -62,10 +63,11 @@ const Register = () => {
   
     try {
       const data = await backendConnection.register(formData);
-      setSuccess(data.success);  
+      setSuccess(data.success);
 
       setTimeout(() => {
-        navigate('/login')
+        localStorage.setItem('email', formData.email)
+        navigate('/activate-account')
       }, 2000)
     } catch (error) {
       // If an error occurs, show the error message from the backend

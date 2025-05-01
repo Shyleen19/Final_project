@@ -8,6 +8,7 @@ import LandingPage from './LandingPage/LandingPage.jsx';
 import Login from './Authentication/login.jsx';
 import { useEffect } from 'react';
 import Register from './Authentication/register.jsx';
+import ActivateAccount from './Authentication/activateAccount.jsx';
 
 const Logout = () => {
   const navigate = useNavigate()
@@ -25,6 +26,7 @@ function App() {
       {/* Login and Signup */}
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/activate-account' element= {<ActivateAccount/>} />
 
       {/* Caregiver Login and Signup */}
       {/* Landing page (default) */}
