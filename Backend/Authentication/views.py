@@ -151,7 +151,7 @@ class LoginAPIView(APIView):
 
             return Response ({
                 "refresh": str(refresh),
-                "access": str(refresh.access_token),
+                "token": str(refresh.access_token),
                 "role": user_profile.role.name,
                 "name": str(user.first_name.capitalize()) + " " + str(user.last_name.capitalize()),
                 "username": user.username
