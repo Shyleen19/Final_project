@@ -1,6 +1,6 @@
 // src/components/Dashboard.js
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, use } from 'react';
 import Sidebar from '../Components/Sidebar.jsx';
 import DashboardCard from './DashboardCard.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,19 +9,23 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
 
-  
+  const { state } = useLocation()
+  const {user_id, first_name, last_name} = state || {};
+  console.log("state", state)
+
   const [name, setName] = useState('')
   const navigate = useNavigate()
 
+
   useEffect(() => {
     const token = localStorage.getItem('token')
-    console.log({"token":token})
     if(!token) {
       navigate('/login')
     } else {
       setName(localStorage.getItem('name' || ''))
     }
   })
+
   const metrics = [
     { title: 'Oxygen Saturation', value: '80/120', unit: 'mmHg', trend: '↑ 2.1%', zone: 'warning' },
     { title: 'Respiratory Rate', value: '36.6', unit: '', trend: '↑ 1.1%', zone: 'normal' },
@@ -37,7 +41,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex-1 bg-[#EDFCFF] p-10">
         <header className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <h1 className="text-3xl font-bold">{user_id? `Viewing ${first_name} ${last_name}'s Vitals`  : "Dashboard"}</h1>
           <div className="flex items-center mr-12">
             <span className="text-xl mr-12">05:10:10</span>
             <FontAwesomeIcon icon={faBell} className="text-xl "  /> {/* Notification bell icon */}

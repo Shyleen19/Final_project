@@ -26,11 +26,7 @@ function App() {
   
   return (
     <Routes>
-      {/* Login and Signup */}
-      <Route path='/login' element={<VitalsGraph />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/activate-account' element= {<ActivateAccount/>} />
-
+      
       {/* Landing page (default) */}
       <Route path='/' element={<LandingPage />} />
 
@@ -42,10 +38,12 @@ function App() {
 
       {/* Patients */}
       <Route path='/patient-dashboard' element={<Dashboard />} />
-      <Route path='/patient-caregivers' element={<PatientCaregivers token = {localStorage.getItem('token')} />} />
+      <Route path='/patient-caregivers' element={<PatientCaregivers caregiver={false} token = {localStorage.getItem('token')} />} /> 
+      <Route path='patient-report' element={<VitalsGraph/>} />
 
       {/* Caregiver Dashboard*/}
-      <Route path='/caregiver-dashboard' element={<CareDashboard />} />
+      <Route path='/caregiver-dashboard' element={<PatientCaregivers caregiver={true} token={localStorage.getItem('token')} />} />
+      <Route path='/caregiver/view-vitals' element={<Dashboard />} />
 
       {/* Logout */}
       <Route path='/logout' element={<Logout />} />
