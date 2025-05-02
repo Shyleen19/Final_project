@@ -63,6 +63,28 @@ class BackendConnection {
         }
     }
 
+    async add_caregiver(formData) {
+        try { 
+            console.log("Services", formData)
+            const response = await apiClient.post('/api/caregivers/add-caregiver/', formData)
+            
+            return response.data
+
+        } catch(error) {
+            if (error.response && error.response.status === 401) {
+                throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
+            } else if (error.response && error.response.status === 500) {
+                throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
+            }else if (error.response && error.response.data) {
+                // Extract error message from Django
+                const messages = Object.values(error.response.data).flat().join(' ');
+                throw new Error(messages);
+            }  else {
+                throw new Error ("Something went wrong.")
+            } 
+        }
+    }
+
     async get_patients() {
         try {
             const patients = await apiClient.get('api/caregivers/my-patients/')

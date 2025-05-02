@@ -15,23 +15,29 @@ const PatientCaregivers = ({ token, caregiver }) => {
     const [success, setSuccess] = useState('')
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        relationship: '',
-        email: '',
-        phone: ''
-    });
+    const [relationship, setRelationship] = useState('')
+    const [email, setEmail] = useState('')
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleAddCaregiver = () => {
-        setCaregivers([...caregivers, formData]);
-        setFormData({ firstName: '', lastName: '', relationship: '', email: '', phone: '' });
+    const handleAddCaregiver = async () => {
         setIsModalOpen(false);
+        try {
+            
+            BackendConnection.setHeaders(localStorage.getItem('token'))
+            const response = await BackendConnection.add_caregiver({'email': email, "relationship_with_patient": relationship})
+            setSuccess("🎉🎉💖" + response.success)
+            setRelationship('')
+            setEmail('')
+        } catch (error) {
+            setError(error.message ? error.message : "An unknown Error has occurred.")
+
+        } finally {
+            setTimeout(() => {
+                setError("")
+                setSuccess("")
+                fetchCaregivers();
+
+            }, 5000)
+        }
     };
 
     const fetchCaregivers = async () => {
@@ -44,6 +50,12 @@ const PatientCaregivers = ({ token, caregiver }) => {
         } catch (error) {
             setError(error.message ? error.message : "An unknown Error has occurred.")
             console.log(error)
+        } finally {
+            setTimeout(() => {
+                setError("")
+                setSuccess("")
+
+            }, 5000)
         }
     }
 
@@ -83,6 +95,12 @@ const PatientCaregivers = ({ token, caregiver }) => {
         } catch (error) {
             setError(error.message ? error.message : "An unknown Error has occurred.")
             console.log(error)
+        } finally {
+            setTimeout(() => {
+                setError("")
+                setSuccess("")
+
+            }, 5000)
         }
     }
 
@@ -215,37 +233,29 @@ const PatientCaregivers = ({ token, caregiver }) => {
                 {/* Modal Overlay */}
                 {isModalOpen && (
                     <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
-                        <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative">
-                            <button onClick={() => setIsModalOpen(false)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
-                                <FontAwesomeIcon icon={faTimes} size="lg" />
-                            </button>
-                            <h2 className="text-2xl font-bold text-center mb-6 text-[#00D9FF]">Add Caregiver</h2>
+                        <form className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative" onSubmit={handleAddCaregiver}>
+                            
+                                <button onClick={() => setIsModalOpen(false)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+                                    <FontAwesomeIcon icon={faTimes} size="lg" />
+                                </button>
+                                <h2 className="text-2xl font-bold text-center mb-6 text-[#00D9FF]">Add Caregiver</h2>
 
-                            <div className="space-y-6">
-                                <div>
-                                    <label className="block text-gray-700 mb-1">First Name</label>
-                                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter First Name" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" />
-                                </div>
-                                <div>
-                                    <label className="block text-gray-700 mb-1">Last Name</label>
-                                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter Last Name" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" />
-                                </div>
-                                <div>
-                                    <label className="block text-gray-700 mb-1">Relationship</label>
-                                    <input type="text" name="relationship" value={formData.relationship} onChange={handleInputChange} placeholder="Enter Relationship" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" />
-                                </div>
-                                <div>
-                                    <label className="block text-gray-700 mb-1">Email</label>
-                                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter Email" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" />
-                                </div>
-                                <div>
-                                    <label className="block text-gray-700 mb-1">Phone</label>
-                                    <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter Phone" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" />
-                                </div>
-                            </div>
+                                <div className="space-y-6">
 
-                            <button onClick={handleAddCaregiver} className="mt-8 w-full bg-[#00D9FF] hover:bg-[#00c1e6] text-white py-2 rounded-lg shadow">Save Caregiver</button>
-                        </div>
+                                    <div>
+                                        <label className="block text-gray-700 mb-1">Email</label>
+                                        <input type="email" name="email" value={email} onChange={(e) => (setEmail(e.target.value))} placeholder="Enter Email" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" required />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-gray-700 mb-1">Relationship</label>
+                                        <input type="text" name="relationship" value={relationship} onChange={(e) => (setRelationship(e.target.value))} placeholder="Enter Relationship" className="w-full border-0 border-b-2 border-gray-300 focus:border-[#00D9FF] focus:ring-0 px-2 py-1" required />
+                                    </div>
+
+                                </div>
+
+                                <button className="mt-8 w-full bg-[#00D9FF] hover:bg-[#00c1e6] text-white py-2 rounded-lg shadow">Add Caregiver</button>
+                        </form>
                     </div>
                 )}
             </div>
