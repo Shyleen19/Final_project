@@ -23,6 +23,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 validate_email = EmailValidator()
 
 class Register(APIView):
+    permission_classes = []
     def post(self, request):
         serializer = RegisterSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -36,6 +37,7 @@ class Register(APIView):
 
 
 class ActivateAccount(APIView):
+    permission_classes=[]
     def get(self, request, uidb64, token):
         try:
             uid = force_str(urlsafe_base64_decode(uidb64))
@@ -53,6 +55,7 @@ class ActivateAccount(APIView):
             return Response({"error": f"An unknown error occured {e}"})
     
 class ResendEmail(APIView):
+    permission_classes=[]
     def post(self, request):
         email = request.session.get('email', '')
 
@@ -72,6 +75,7 @@ class ResendEmail(APIView):
             return Response({"email_error": f"Request for a new link failed {e}"}, status=status.HTTP_400_BAD_REQUEST)
 
 class ResetPassword(APIView):
+    permission_classes=[]
     def post(self, request):
         email = request.data.get('email', '')
         
@@ -104,6 +108,7 @@ class ResetPassword(APIView):
             return Response({"email_error": "An error occured while trying to send the message."}, status=status.HTTP_400_BAD_REQUEST)
 
 class SetNewPassword(APIView):
+    permission_classes=[]
     def post(self, request, uidb64, token):
         password = request.data.get('password', '')
         confirm_password = request.data.get('confirm_password', "")
@@ -130,6 +135,7 @@ class SetNewPassword(APIView):
 
 
 class LoginAPIView(APIView):
+    permission_classes=[]
     def post(self, request, *args, **kwargs):
         username_or_email = request.data.get("username_or_email")
         password = request.data.get("password")

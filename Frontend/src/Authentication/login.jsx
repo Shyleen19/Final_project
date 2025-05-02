@@ -54,7 +54,7 @@ const LoginPage = () => {
           {/* Email */}
           <div className='my-5'>
             <label className="block text-black mb-1 font-medium">Username or Email</label>
-            <input type="email" placeholder="Email" className="w-full border-b-2 border-black py-2 focus:outline-none rounded-b-md" value={usernameOrEmail} onChange={(e) => (setUsernameOrEmail(e.target.value))} />
+            <input type="text" placeholder="usernameOrEmail" className="w-full border-b-2 border-black py-2 focus:outline-none rounded-b-md" value={usernameOrEmail} onChange={(e) => (setUsernameOrEmail(e.target.value))} />
           </div>
 
           {/* Password */}

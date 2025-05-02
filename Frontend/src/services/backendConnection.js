@@ -43,7 +43,7 @@ class BackendConnection {
             } else if (error.response && error.response.status === 500) {
                 throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
             } else {
-                throw new Error ("An unknown error")
+                throw new Error("An unknown error")
             }
         }
     }
@@ -52,11 +52,30 @@ class BackendConnection {
         try {
             await apiClient.delete(`/api/caregivers/${caregiver_id}/delete/`)
             return "✅✅ Caregiver deleted successfully."
-        } catch(error) {
-            console.log(error)
-            throw new Error ("‼️‼️ Oops! Unexprected Error occured while deleting the caregiver.")
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
+            } else if (error.response && error.response.status === 500) {
+                throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
+            } else {
+                throw new Error("An unknown error")
+            }
+        }
+    }
+
+    async get_patients() {
+        try {
+            const patients = await apiClient.get('api/caregivers/my-patients/')
+            return patients.data
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
+            } else if (error.response && error.response.status === 500) {
+                throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
+            } else {
+                throw new Error(error.message + ". Please try again later.")
+            }
         }
     }
 }
-
 export default new BackendConnection();
