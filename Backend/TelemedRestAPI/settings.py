@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "Authentication",
     "user_profile",
     "Caregivers",
-    "roles"
+    "roles",
+    "Vitals"
 ]
 
 MIDDLEWARE = [

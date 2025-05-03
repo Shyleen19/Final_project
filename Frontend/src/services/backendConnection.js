@@ -34,7 +34,7 @@ class BackendConnection {
 
     async get_caregivers() {
         try {
-            const caregivers = await apiClient.get('api/caregivers');
+            const caregivers = await apiClient.get('/api/caregivers');
             return caregivers.data;
 
         } catch (error) {
@@ -64,30 +64,31 @@ class BackendConnection {
     }
 
     async add_caregiver(formData) {
-        try { 
+        try {
             console.log("Services", formData)
             const response = await apiClient.post('/api/caregivers/add-caregiver/', formData)
-            
+
             return response.data
 
-        } catch(error) {
+        } catch (error) {
             if (error.response && error.response.status === 401) {
                 throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
             } else if (error.response && error.response.status === 500) {
                 throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
-            }else if (error.response && error.response.data) {
+            } else if (error.response && error.response.data) {
                 // Extract error message from Django
                 const messages = Object.values(error.response.data).flat().join(' ');
                 throw new Error(messages);
-            }  else {
-                throw new Error ("Something went wrong.")
-            } 
+            } else {
+                console.log(error)
+                throw new Error("Something went wrong." + error)
+            }
         }
     }
 
     async get_patients() {
         try {
-            const patients = await apiClient.get('api/caregivers/my-patients/')
+            const patients = await apiClient.get('/api/caregivers/my-patients/')
             return patients.data
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -99,5 +100,55 @@ class BackendConnection {
             }
         }
     }
+
+
+    async get_vitals(user_id=0) {
+        try {
+            let vitals
+            if (user_id === 0) {
+                vitals = await apiClient.get('/api/vitals/')
+                return vitals.data
+            } else {
+                vitals = await apiClient.get(`/api/vitals/${user_id}`)
+                return vitals.data
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
+            } else if (error.response && error.response.status === 500) {
+                throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
+            } else if (error.response && error.response.data) {
+                // Extract error message from Django
+                const messages = Object.values(error.response.data).flat().join(' ');
+                throw new Error(messages);
+            } else if (error.response && error.response.status === 404) {
+                throw new Error('‼️‼️ Oops! Invalid request made. Please contact admin.');
+            } else {
+                throw new Error("Something went wrong.")
+            }
+        }
+    }
+
+    async record_vitals(formData) {
+        try {
+            const response = await apiClient.post('/api/vitals/',formData)
+            return response.data
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                localStorage.clear()
+                throw new Error('‼️‼️ Oops !Session expired. Please log in again.');
+                
+            } else if (error.response && error.response.status === 500) {
+                throw new Error('‼️‼️ Oops! Server Error. Please try again later.');
+            } else if (error.response && error.response.data) {
+                // Extract error message from Django
+                const messages = Object.values(error.response.data).flat().join(' ');
+                throw new Error(messages);
+            } else {
+                throw new Error("Something went wrong. " + error.message)
+            }
+        }
+    }
+
 }
 export default new BackendConnection();

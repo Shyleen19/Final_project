@@ -45,6 +45,7 @@ const CareDashboard = () => {
           </div>
         </div>
         
+        {/* create simulate button here. */}
         <div className="grid grid-cols-3 gap-4 mt-5">
           {metrics.map((metric, index) => (
             <DashboardCard key={index} {...metric} />

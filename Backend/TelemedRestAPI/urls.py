@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/authenticate/', include('Authentication.urls')),
     path('api/roles/', include('roles.urls')),
     path('api/caregivers/', include('Caregivers.urls')),
-    path('api/auth/', include('user_profile.urls'))
+    path('api/auth/', include('user_profile.urls')),
+    path('api/vitals/', include('Vitals.urls'))
 ]

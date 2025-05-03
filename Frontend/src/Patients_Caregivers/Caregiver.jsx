@@ -3,7 +3,7 @@ import Sidebar from '../Components/Sidebar.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faEdit, faTrashAlt, faEye, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import BackendConnection from '../services/BackendConnection.js';
+import BackendConnection from '../services/backendConnection.js';
 import Dashboard from '../Patients_Dashboard/Dashboard.jsx';
 
 
