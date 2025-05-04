@@ -7,11 +7,12 @@ import M_Dashboard from './Main_Dashboard/M_Dashboard.jsx';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import Login from './Authentication/login.jsx';
 import VitalsGraph from './Reports/patReport.jsx'
-import CareDashboard from './Caregivers_Dashboard/careDashboard.jsx';
+
 import { useEffect } from 'react';
 import Register from './Authentication/register.jsx';
 import ActivateAccount from './Authentication/activateAccount.jsx';
 import PatientCaregivers from './Patients_Caregivers/Caregiver.jsx';
+import AccountConfirmed from './Authentication/AccountConfirmed.jsx';
 
 const Logout = () => {
   const navigate = useNavigate()
@@ -29,17 +30,18 @@ function App() {
     <Routes>
       
       {/* Landing page (default) */}
-      <Route path='/' element={<PatientCaregivers />} />
+      <Route path='/' element={<LandingPage />} />
 
 
       {/* Login and Signup */}
-      <Route path='/login' element={<M_Dashboard />} />
+      <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/activate-account' element={<ActivateAccount />} />
+      <Route path='/account-activated' element={< AccountConfirmed/>} />
 
       {/* Patients */}
       <Route path='/patient-dashboard' element={<Dashboard />} />
-      <Route path='/M-Dashboard' element={<M_Dashboard />} />
+      <Route path='/main-Dashboard' element={<M_Dashboard />} />
       <Route path='/patient-caregivers' element={<PatientCaregivers caregiver={false} token = {localStorage.getItem('token')} />} /> 
       <Route path='patient-report' element={<VitalsGraph/>} />
 

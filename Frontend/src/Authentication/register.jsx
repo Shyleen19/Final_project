@@ -55,12 +55,12 @@ const Register = () => {
     e.preventDefault();
     setSuccess(null);
     setError(null);
-  
+
     if (formData.password !== formData.confirm_password) {
       setError("Passwords do not match.");
       return;
     }
-  
+
     try {
       const data = await backendConnection.register(formData);
       setSuccess(data.success);
@@ -70,17 +70,10 @@ const Register = () => {
         navigate('/activate-account')
       }, 2000)
     } catch (error) {
-      // If an error occurs, show the error message from the backend
-      if (error.response && error.response.data) {
-        const errorMessage = Object.values(error.response.data).flat().join(" ");
-        setError(errorMessage || "An unknown error has occurred.");
-      } else {
-        setError("An unknown error has occurred.");
-      }
-      console.log(error);
+      setError(error.message || "An unknown error has occured. Please cross-check you details or try again later.")
     }
   };
-  
+
   return (
     <div className="bg-white min-h-screen flex flex-col">
       {/* Header */}
@@ -218,8 +211,8 @@ const Register = () => {
               </>
             )}
 
-            {error && <p className='text-red-500'>{error}</p>}
-            {success && <p className='text-green-500'>{success}</p>}
+            {error && <div className="bg-red-100 text-red-700 border border-red-400 px-4 py-3 rounded mt-4">{error}</div>}
+            {success && <div className="bg-green-100 text-green-700 border border-green-400 px-4 py-3 rounded mt-4">{success}</div>}
             {/* Submit Button */}
             <div className="md:col-span-2">
               <button

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackendConnection from '../services/BackendConnection';
+import BackendConnection from '../services/backendConnection.js';
 
 
 const LoginPage = () => {
@@ -18,6 +18,7 @@ const LoginPage = () => {
       setError(null)
       setSuccess(null)
       const data = await BackendConnection.login(usernameOrEmail, password)
+      localStorage.clear()
       BackendConnection.setHeaders(data.token)
       localStorage.setItem('token', data.token)
       localStorage.setItem('username', data.username)
@@ -29,11 +30,7 @@ const LoginPage = () => {
         navigate('/patient-dashboard') // navigate to patient's dashboard.
       }, 2000)
     } catch (error) {
-      if (error.response && error.response.data) {
-        setError(error.response.data.error || "Login Failed")
-      } else {
-        setError("Something went Wrong.")
-      }
+      setError(error.message || "An error occured. Please cross check your detail or try again later.")
     } finally {
       if (data){
         console.log(data)
@@ -63,8 +60,8 @@ const LoginPage = () => {
             <input type="password" placeholder="Password" className="w-full border-b-2 border-black py-2 focus:outline-none rounded-b-md" value={password} onChange={(e) => (setPassword(e.target.value))} />
           </div>
 
-          {error && <p className='text-red-500'>{error}</p>}
-          {success && <p className='text-green-500'>{success}</p>}
+          {error && <div className="bg-red-100 text-red-700 border border-red-400 px-4 py-3 rounded mt-4">{error}</div>}
+          {success && <div className="bg-green-100 text-green-700 border border-green-400 px-4 py-3 rounded mt-4">{success}</div>}
           {/* Button */}
           <div className="flex justify-center mt-6">
             <button type="submit" className="bg-[#00D9FF] text-white font-semibold py-2 px-10 rounded-md hover:bg-white hover:text-[#00D9FF] hover:border-[#00D9FF] hover:border transition duration-300">

@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 from django.urls import reverse
 from django.core.mail import EmailMessage
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from .utils import token_generator
 from .serializers import RegisterSerializer, send_activation_email, EmailThread
@@ -45,19 +46,18 @@ class ActivateAccount(APIView):
 
             # check if token has already been user.
             if not token_generator.check_token(user, token):
-                return Response({"token_error": "The token has already been used."}, status=status.HTTP_400_BAD_REQUEST)
+                return redirect("http://localhost:5173/login")
             if user.is_active:
-                raise Response({"activate_error": "The account is already activated."}, status=status.HTTP_400_BAD_REQUEST)
+                raise redirect("http://localhost:5173/login")
             user.is_active = True
             user.save()
-            return Response({"success": "User activated successfully. You can now log in to your account."}, status=status.HTTP_200_OK)
+            return redirect("http://localhost:5173/account-activated")
         except Exception as e:
             return Response({"error": f"An unknown error occured {e}"})
     
 class ResendEmail(APIView):
     permission_classes=[]
-    def post(self, request):
-        email = request.session.get('email', '')
+    def post(self, request, email):
 
         if not email:
             return Response({"email_error": "Email field cannot be empty."}, status = status.HTTP_400_BAD_REQUEST)

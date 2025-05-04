@@ -1,22 +1,31 @@
 // src/Main_Dashboard/M_Dashboard.jsx
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Sidebar from '../components/Sidebar.jsx';
+import Sidebar from '../Components/Sidebar.jsx';
 import M_DashboardCard from './M_DashboardCard.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+
 
 const M_Dashboard = () => {
   const { state } = useLocation();
   const { user_id, first_name, last_name } = state || {};
 
+
   const [name, setName] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/login');
+      setError('Please login to access this page.')
+
+      setTimeout(() => {
+        navigate('/login')
+      }, 2000)
+      return;
     } else {
       const storedName = localStorage.getItem('name');
       if (storedName) setName(storedName);
@@ -45,6 +54,8 @@ const M_Dashboard = () => {
         </header>
 
         <p className="text-xl mt-2">Welcome back {name}</p>
+        
+        {error && <div className="bg-red-100 text-red-700 border border-red-400 px-4 py-3 rounded mt-4">{error}</div>}
 
         {/* Color Code Legend */}
         {/* Color Code Legend */}
