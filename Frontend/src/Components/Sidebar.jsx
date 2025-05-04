@@ -9,7 +9,8 @@ const Sidebar = () => {
       </div>
       <nav className="flex flex-col flex-grow mt-7">
         <ul className="flex-grow">
-          <a href="/patient-dashboard"><li className="text-white my-6 cursor-pointer hover:text-black">Dashboard</li></a>
+          <a href="/M-Dashboard"><li className="text-white my-6 cursor-pointer hover:text-black">Dashboard</li></a>
+          <a href="/patient-dashboard"><li className="text-white my-6 cursor-pointer hover:text-black">My-Vitals</li></a>
           <a href="/patient-caregivers"><li className="text-white my-6 cursor-pointer hover:text-black">My-Caregivers</li></a>
           <a href="/caregiver-dashboard"><li className="text-white my-6 cursor-pointer hover:text-black">My-Patients</li></a>
           <a href="/patient-report"><li className="text-white my-6 cursor-pointer hover:text-black">Reports</li></a>       
