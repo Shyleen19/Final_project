@@ -9,7 +9,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import authenticate
 from django.urls import reverse
 from django.core.mail import EmailMessage
-from django.shortcuts import render
 from django.shortcuts import redirect
 
 from .utils import token_generator
@@ -39,6 +38,7 @@ class Register(APIView):
 
 class ActivateAccount(APIView):
     permission_classes=[]
+    authentication_classes = []
     def get(self, request, uidb64, token):
         try:
             uid = force_str(urlsafe_base64_decode(uidb64))
@@ -57,6 +57,7 @@ class ActivateAccount(APIView):
     
 class ResendEmail(APIView):
     permission_classes=[]
+    authentication_classes = []
     def post(self, request, email):
 
         if not email:
@@ -76,6 +77,7 @@ class ResendEmail(APIView):
 
 class ResetPassword(APIView):
     permission_classes=[]
+    authentication_classes = []
     def post(self, request):
         email = request.data.get('email', '')
         
@@ -109,6 +111,7 @@ class ResetPassword(APIView):
 
 class SetNewPassword(APIView):
     permission_classes=[]
+    authentication_classes = []
     def post(self, request, uidb64, token):
         password = request.data.get('password', '')
         confirm_password = request.data.get('confirm_password', "")
@@ -136,6 +139,7 @@ class SetNewPassword(APIView):
 
 class LoginAPIView(APIView):
     permission_classes=[]
+    authentication_classes = []
     def post(self, request, *args, **kwargs):
         username_or_email = request.data.get("username_or_email")
         password = request.data.get("password")
