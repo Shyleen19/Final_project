@@ -1,14 +1,14 @@
 const Footer = () => {
-    return (
+  return (
     <>
-        <footer className="bg-[#43E3FD] py-8 text-gray-800">
+      <footer className="bg-[#43E3FD] py-8 text-gray-800">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
           {/* Contact Information */}
           <div>
             <h3 className="font-bold text-lg mb-4">Contact Information</h3>
-            <p>Email: vitalink@gmail.com</p>
-            <p>Phone: +254 71234562</p>
-            <p>Email: vitalink@gmail.com</p>
+            <p>Email: dialicare@gmail.com</p>
+            <p>Phone: +254 743208323</p>
+            <p>Email: dialicare@gmail.com</p>
           </div>
 
           {/* Links */}
@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-center mt-4">
-          <p>© 2024 VitaLink. All Rights Reserved.</p>
+          <p>© 2026 DialiCare. All Rights Reserved.</p>
         </div>
       </footer>
     </>)

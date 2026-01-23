@@ -13,6 +13,7 @@ import Register from './Authentication/register.jsx';
 import ActivateAccount from './Authentication/activateAccount.jsx';
 import PatientCaregivers from './Patients_Caregivers/Caregiver.jsx';
 import AccountConfirmed from './Authentication/AccountConfirmed.jsx';
+import Chatbot from './Components/Chatbot.jsx';
 
 const Logout = () => {
   const navigate = useNavigate()
@@ -25,33 +26,36 @@ const Logout = () => {
   return null;
 }
 function App() {
-  
+
   return (
-    <Routes>
-      
-      {/* Landing page (default) */}
-      <Route path='/' element={<LandingPage />} />
+    <>
+      <Routes>
+
+        {/* Landing page (default) */}
+        <Route path='/' element={<LandingPage />} />
 
 
-      {/* Login and Signup */}
-      <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/activate-account' element={<ActivateAccount />} />
-      <Route path='/account-activated' element={< AccountConfirmed/>} />
+        {/* Login and Signup */}
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/activate-account' element={<ActivateAccount />} />
+        <Route path='/account-activated' element={< AccountConfirmed />} />
 
-      {/* Patients */}
-      <Route path='/patient-dashboard' element={<Dashboard />} />
-      <Route path='/main-Dashboard' element={<M_Dashboard />} />
-      <Route path='/patient-caregivers' element={<PatientCaregivers caregiver={false} token = {localStorage.getItem('token')} />} /> 
-      <Route path='patient-report' element={<VitalsGraph/>} />
+        {/* Patients */}
+        <Route path='/patient-dashboard' element={<Dashboard />} />
+        <Route path='/main-Dashboard' element={<M_Dashboard />} />
+        <Route path='/patient-caregivers' element={<PatientCaregivers caregiver={false} token={localStorage.getItem('token')} />} />
+        <Route path='patient-report' element={<VitalsGraph />} />
 
-      {/* Caregiver Dashboard*/}
-      <Route path='/caregiver-dashboard' element={<PatientCaregivers caregiver={true} token={localStorage.getItem('token')} />} />
-      <Route path='/caregiver/view-vitals' element={<Dashboard />} />
+        {/* Caregiver Dashboard*/}
+        <Route path='/caregiver-dashboard' element={<PatientCaregivers caregiver={true} token={localStorage.getItem('token')} />} />
+        <Route path='/caregiver/view-vitals' element={<Dashboard />} />
 
-      {/* Logout */}
-      <Route path='/logout' element={<Logout />} />
-    </Routes>
+        {/* Logout */}
+        <Route path='/logout' element={<Logout />} />
+      </Routes>
+      <Chatbot />
+    </>
 
   );
 }

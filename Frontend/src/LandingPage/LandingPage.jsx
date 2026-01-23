@@ -13,7 +13,7 @@ const LandingPage = () => {
     <div className="bg-white">
       {/* Header */}
       <header className="flex justify-between p-6 bg-[#EDFCFF] sticky top-0 z-50">
-        <div className="text-black font-bold text-2xl ml-4">VitaLink</div>
+        <div className="text-black font-bold text-2xl ml-4">DialiCare</div>
         <nav>
           <ul className="flex space-x-16 text-black">
             <li><a href="#home" className="hover:text-[#00D9FF]">Home</a></li>
@@ -32,10 +32,10 @@ const LandingPage = () => {
       <section id="home" className="flex flex-col md:flex-row items-center pt-8 pb-14 bg-[#FFFF] text-center md:text-left">
         <div className="flex flex-col items-center mb-8 ml-16 md:items-start md:mb-0 md:w-1/2">
           <h1 className="text-5xl font-bold mb-4">
-            Get Heart Care with <span className="text-[#00D9FF]">VitaLink</span>
+            Get Kidney Care with <span className="text-[#00D9FF]">DialiCare</span>
           </h1>
           <p className="text-lg mb-8">
-            Real-time monitoring and secure access for your family<br /> to track your heart's health, all from home.
+            Self-monitoring monitoring and secure access for your family to track your kidney's health, all from home.
           </p>
           <div className="flex flex-col md:flex-row md:justify-start">
             <a href="/login">
@@ -49,8 +49,8 @@ const LandingPage = () => {
         </div>
         <div className="mt-4 md:mt-0 md:w-1/1">
           <img
-            src="Consultation with doctor online.jpg"
-            alt="VitaLink Illustration"
+            src="dialysis picture.webp"
+            alt="DialiCare Illustration"
             className="w-full max-w-[95%]"
           />
         </div>
@@ -61,10 +61,10 @@ const LandingPage = () => {
         <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
         <div className="flex justify-center space-x-20 mb-8">
           <div className="bg-white shadow-lg rounded-lg p-6 max-w-xs flex flex-col">
-            <img src="Premium Vector _ Smartwatch female health tracking isolated cartoon vector illustrations.jpg" alt="Continuous Vitals Monitoring" className="w-full h-48 object-cover mb-4" />
-            <h3 className="text-xl font-semibold mb-2 text-left flex-grow">Continuous Vitals Monitoring</h3>
+            <img src="self monitoring.png" alt="Continuous Vitals Monitoring" className="w-full h-48 object-cover mb-4" />
+            <h3 className="text-xl font-semibold mb-2 text-left flex-grow">Self Vitals Monitoring</h3>
             <p className="text-black text-left">
-              Stay connected with your health. Our service provides real-time updates on your vital signs, ensuring you and your family are always informed.
+              Stay connected with your health.Track key health signs between dialysis sessions, promoting early awareness of changes and better day-to-day health management.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ const LandingPage = () => {
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4 text-center">Why Choose Us</h2>
           <p className="text-lg text-gray-600 mb-4 max-w-2xl mx-auto text-left">
-            Your Health, Our Priority. Our proactive health monitoring ensures continuous tracking of vital signs, enabling early detection of potential issues with a focus on heart health. Additionally, our platform fosters family engagement by allowing you to share updates seamlessly, keeping your loved ones informed and connected.
+            Living with dialysis is more than hospital visits. We help you stay aware of changes in your health, feel supported between sessions, and take control of your wellbeing—one day at a time, with confidence and peace of mind.
           </p>
           <div className="flex justify-center">
             <button className="bg-[#00D9FF] text-white px-6 py-2 rounded hover:bg-white hover:text-[#00D9FF]">Get Started</button>
@@ -90,13 +90,13 @@ const LandingPage = () => {
       </section>
       {/* About Us Section */}
       <section id="about" className="py-16 bg-white flex flex-col items-center">
-        <h2 className="text-4xl font-bold mb-8 text-center">About Us</h2>
+        <h2 className="text-4xl font-bold mb-8 text-center-right">About Us</h2>
         <div className="flex flex-col md:flex-row md:w-full">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <img src="How Much Does It Cost to Implement Telemedicine_.jpg" alt="About Us" className="w-full h-auto rounded" />
           </div>
           <div className="md:w-1/2">
-            <p className="mb-4">VitaLink is a telehealth company dedicated to supporting individuals with <br />cardiovascular disease. Using IoT and AI technologies, we provide continuous <br /> monitoring of patient vitals, ensuring round-the-clock care. Our platform keeps <br /> loved ones informed by granting them access to vitals updates and alerts about potential health concerns. In the event of detected issues, both patients and their caregivers are promptly notified.</p>
+            <p className="mb-4">Diali Care is a patient-focused health solution designed to support dialysis patients beyond hospital. It helps patients track key health indicators, recognize early warning signs, and stay aware of changes in their condition between dialysis sessions. <br /> By promoting self-monitoring and shared access with caregivers, Diali Care empowers <br /> patients to take control of their health and feel supported in their day-to-day lives.</p>
 
             <div className="flex flex-col space-y-4 ml-8">
               <div className="bg-[#EDFCFF] p-3 rounded shadow transform transition-transform duration-300 hover:-translate-y-1 ml-20" style={{ width: '200px' }}>
@@ -125,9 +125,8 @@ const LandingPage = () => {
               1
             </div>
             <div className="ml-4">
-              <h3 className="text-2xl font-semibold">Smartwatch Activation</h3>
-              <p>Patients receive a smartwatch that continuously monitors vital signs such as heart rate,<br /> blood pressure, and more.</p>
-            </div>
+              <h3 className="text-2xl font-semibold">Patient Self-Monitoring</h3>
+              <p>Manual entry of key health indicators including:Body weight,Blood pressure,Edema,Shortness of breath<br /> Daily and periodic symptom logging by the patient, and more.</p> </div>
           </div>
 
           <div className='ml-60'>
@@ -135,9 +134,8 @@ const LandingPage = () => {
               2
             </div>
             <div className="ml-4">
-              <h3 className="text-2xl font-semibold">Data Recording</h3>
-              <p>The smartwatch automatically uploads all vital readings to the patient’s secure <br />account on our website in real time.</p>
-            </div>
+              <h3 className="text-2xl font-semibold">Rule-Based Risk Assessment</h3>
+              <p>Application of predefined clinical rules to analyze patient-entered data.Identification of potential risk patterns such as fluid overload or uncontrolled blood pressure.</p> </div>
           </div>
 
           <div>
@@ -145,8 +143,8 @@ const LandingPage = () => {
               3
             </div>
             <div className="ml-4">
-              <h3 className="text-2xl font-semibold">AI-Powered Insights</h3>
-              <p>Our AI system analyzes the recorded data to detect any potential health risks and predict <br /> alarming outcomes.</p>
+              <h3 className="text-2xl font-semibold">Caregiver Remote Monitoring</h3>
+              <p>Read-only access for caregivers to view patient-submitted health data. <br /> Visualization of trends and flagged risk indicators</p>
             </div>
           </div>
 
@@ -174,13 +172,13 @@ const LandingPage = () => {
               <div className="bg-[#67EAFF] p-5 rounded-lg flex flex-col items-center justify-center">
                 <h3 className="text-lg font-semibold text-white mb-4 text-center">Contact information</h3>
                 <p className="flex items-center mb-2 justify-center">
-                  <FontAwesomeIcon icon={faPhoneAlt} className="mr-2 text-white" /> +254 712345672
+                  <FontAwesomeIcon icon={faPhoneAlt} className="mr-2 text-white" /> +254 743208323
                 </p>
                 <p className="flex items-center mb-2 justify-center">
-                  <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-white" /> vitalink@gmail.com
+                  <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-white" /> dialicare@gmail.com
                 </p>
                 <p className="flex items-center mb-2 justify-center">
-                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2 text-white" /> vitalink
+                  <FontAwesomeIcon icon={faWhatsapp} className="mr-2 text-white" /> dialicare
                 </p>
                 <p className="flex items-center justify-center">
                   <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-white" /> Nairobi, Kenya
@@ -229,7 +227,7 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </div>
   )
 }
